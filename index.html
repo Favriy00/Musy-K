@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#14111f" />
+    <meta name="description" content="Reproductor de música local para tablet." />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icon-192.png" />
+    <title>Reproductor Local</title>
+  </head>
+  <body>
+    <div class="layout">
+      <section class="now" aria-label="Reproduciendo ahora">
+        <div class="cover" id="cover"></div>
+        <div class="info">
+          <h2 id="title">Nada en reproducción</h2>
+          <p id="artist">Elige una canción de tu biblioteca</p>
+        </div>
+
+        <div class="progress">
+          <span id="cur">0:00</span>
+          <input id="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Posición" />
+          <span id="dur">0:00</span>
+        </div>
+
+        <div class="controls">
+          <button id="btn-shuffle" class="ctl small" aria-label="Aleatorio" aria-pressed="false"></button>
+          <button id="btn-prev" class="ctl" aria-label="Anterior"></button>
+          <button id="btn-play" class="ctl main" aria-label="Reproducir"></button>
+          <button id="btn-next" class="ctl" aria-label="Siguiente"></button>
+          <button id="btn-repeat" class="ctl small" aria-label="Repetir: desactivado" aria-pressed="false"></button>
+        </div>
+
+        <label class="volume">
+          <span>Volumen</span>
+          <input id="volume" type="range" min="0" max="100" value="100" aria-label="Volumen" />
+        </label>
+      </section>
+
+      <section class="library" aria-label="Biblioteca">
+        <header class="lib-head">
+          <div>
+            <h1>Reproductor Local</h1>
+            <p id="count" class="muted">0 canciones</p>
+          </div>
+          <button id="btn-add" class="primary"></button>
+        </header>
+
+        <input id="search" type="search" placeholder="Buscar por título o artista…" autocomplete="off" />
+
+        <ul id="list" class="list"></ul>
+
+        <div id="empty" class="empty" hidden>
+          <p>Tu biblioteca está vacía.</p>
+          <p class="muted">Añade archivos de audio de tu tablet o arrástralos aquí. Se guardan solo en este dispositivo.</p>
+        </div>
+      </section>
+    </div>
+
+    <input id="file" type="file" accept="audio/*,.mp3,.m4a,.aac,.flac,.ogg,.opus,.wav" multiple hidden />
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
